@@ -8,33 +8,47 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var Order_1;
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Product = void 0;
+exports.Order = exports.OrderStatus = void 0;
 const typeorm_1 = require("typeorm");
-let Product = class Product {
+var OrderStatus;
+(function (OrderStatus) {
+    OrderStatus["PENDING"] = "pending";
+    OrderStatus["PAID"] = "paid";
+    OrderStatus["FAILED"] = "failed";
+})(OrderStatus || (exports.OrderStatus = OrderStatus = {}));
+let Order = Order_1 = class Order {
+    constructor() {
+        this.status = OrderStatus.PENDING;
+    }
+    static create(input) {
+        const order = new Order_1();
+        order.client_id = input.client_id;
+    }
 };
-exports.Product = Product;
+exports.Order = Order;
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)('uuid'),
     __metadata("design:type", String)
-], Product.prototype, "id", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], Product.prototype, "name", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ type: 'text' }),
-    __metadata("design:type", String)
-], Product.prototype, "description", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], Product.prototype, "image_url", void 0);
+], Order.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: 'decimal', precision: 10, scale: 2 }),
     __metadata("design:type", Number)
-], Product.prototype, "price", void 0);
-exports.Product = Product = __decorate([
+], Order.prototype, "total", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", Number)
+], Order.prototype, "client_id", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Order.prototype, "status", void 0);
+__decorate([
+    (0, typeorm_1.CreateDateColumn)(),
+    __metadata("design:type", Date)
+], Order.prototype, "created_at", void 0);
+exports.Order = Order = Order_1 = __decorate([
     (0, typeorm_1.Entity)()
-], Product);
-//# sourceMappingURL=product.entity.js.map
+], Order);
+//# sourceMappingURL=order.entity.js.map

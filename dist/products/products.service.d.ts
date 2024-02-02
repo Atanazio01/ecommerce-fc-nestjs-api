@@ -5,9 +5,9 @@ import { Product } from './entities/product.entity';
 export declare class ProductsService {
     private productRepo;
     constructor(productRepo: Repository<Product>);
-    create(createProductDto: CreateProductDto): string;
+    create(createProductDto: CreateProductDto): Promise<Product>;
     findAll(): Promise<Product[]>;
-    findOne(id: number): string;
-    update(id: number, updateProductDto: UpdateProductDto): string;
-    remove(id: number): string;
+    findOne(id: string): Promise<Product>;
+    update(id: string, updateProductDto: UpdateProductDto): Promise<import("typeorm").UpdateResult>;
+    remove(id: string): Promise<import("typeorm").DeleteResult>;
 }

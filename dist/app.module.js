@@ -13,6 +13,9 @@ const app_service_1 = require("./app.service");
 const products_module_1 = require("./products/products.module");
 const typeorm_1 = require("@nestjs/typeorm");
 const product_entity_1 = require("./products/entities/product.entity");
+const orders_module_1 = require("./orders/orders.module");
+const order_entity_1 = require("./orders/entities/order.entity");
+const order_item_entity_1 = require("./orders/entities/order-item.entity");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -26,11 +29,12 @@ exports.AppModule = AppModule = __decorate([
                 username: 'root',
                 password: 'root',
                 database: 'nest',
-                entities: [product_entity_1.Product],
+                entities: [product_entity_1.Product, order_entity_1.Order, order_item_entity_1.OrderItem],
                 synchronize: true,
                 logging: true,
             }),
             products_module_1.ProductsModule,
+            orders_module_1.OrdersModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
